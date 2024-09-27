@@ -8,6 +8,10 @@ MAINTAINER adrianp@stindustries.net
 #
 ARG CURL_OPTIONS=""
 
+RUN sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/CentOS-*.repo
+RUN sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/CentOS-*.repo
+RUN sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/CentOS-*.repo
+
 # Prep environment
 #
 RUN yum -y install deltarpm && yum -y update
