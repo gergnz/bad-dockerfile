@@ -110,9 +110,9 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           load: true
-          tags:
-            - gergnz/bad-dockerfile:latest
-            - awstest/bad-dockerfile
+          tags: |
+            gergnz/bad-dockerfile:latest
+            awstest/bad-dockerfile
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
@@ -120,7 +120,7 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
         with:
-      - name: Build, tag, and push image to Amazon ECR
+      - name: Push image to Amazon ECR
         id: build-publish
         shell: bash
         env:
